@@ -12,6 +12,7 @@ class JogoDaMemoria {
         this.iconePadrao = './arquivos/padrao.png'
         this.heroisEscondidos = []
         this.heroisSelecionados = []
+        this.jogoIniciado = false;
     }
 
     inicializar(){
@@ -38,6 +39,7 @@ class JogoDaMemoria {
         this.tela.limparContador(idDoIntervalo)
         this.esconderHerois(copias)
         this.tela.exibirCarregando(false)
+        this.jogoIniciado = true;
     }
 
     esconderHerois(herois) {
@@ -57,8 +59,13 @@ class JogoDaMemoria {
     }
 
     verificarSelecao(id, nome) {
+        if (!this.jogoIniciado) return;
         const item = {id, nome}
         const heroisSelecionados = this.heroisSelecionados.length
+
+        const elementoSelecionado = document.querySelector(`[data-id="${id}"]`);
+        if (!elementoSelecionado) return;
+        elementoSelecionado.classList.add('selecionado');
         
         switch(heroisSelecionados){
             case 0:
@@ -75,6 +82,9 @@ class JogoDaMemoria {
                 this.tela.exibirMensagem(false)
                 break;
         }
+        setTimeout(() => {
+            elementoSelecionado.classList.remove('selecionado');
+        }, 1000);
     }
 
     mostrarHeroisEscondidos() {
@@ -87,6 +97,7 @@ class JogoDaMemoria {
     }
 
     jogar() {
+        this.jogoIniciado = false;
         this.embaralhar()
     }
 }

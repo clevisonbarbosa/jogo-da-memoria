@@ -10,12 +10,31 @@
     <script src="./src/jogoDaMemoria.js"></script>
     <script src="./src/tela.js"></script>
     <title>Memory Game</title>
+    <style>
+        .selecionado {
+            border: 2px solid yellow;
+            box-shadow: 0 0 10px yellow;
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            #conteudo .col-md-3 {
+                flex: 0 0 50%;
+                max-width: 50%;
+            }
+            #jogar, #mostrarTudo {
+            flex: 1 1 100%;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        }
+    </style>
 </head>
 <body class="container-fluid">
     <br>
     <div class="row justify-content-center">
         <div class="col-12 col-sm-6">
-            <div class="d-flex justify-content-around">
+            <div class="d-flex justify-content-around" style="gap: 10px;">
                 <button type="button" class="btn btn-success" id="jogar">Clique aqui para iniciar</button>
                 <button type="button" class="btn btn-danger" id="mostrarTudo">Mostrar tudo</button>
             </div>
